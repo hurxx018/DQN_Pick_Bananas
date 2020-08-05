@@ -1,4 +1,5 @@
-
+import random
+from collections import deque, namedtuple
 
 import torch
 import torch.nn as nn
@@ -89,17 +90,26 @@ class ReplayBuffer(object):
         batch_size, 
         seed
         ):
-        pass
 
+        # Store instance variables
+        self.action_size = action_size
+        self.memory = deque(maxlen = buffer_size)
+        self.batch_size = batch_size
+        self.seed = random.seed(seed)
+
+        # Namedtuple for storing each experience
+        self._experience = namedtuple("Experience", field_names = ["state", "action", "reward", "next_state", "done"])
 
     def add(
         self,
         state,
-        action, reward,
+        action, 
+        reward,
         next_state, 
         done
         ):
-        pass
+        tmp_e = self._experience(state, action, reward, next_state, done)
+        self.memory.append(tmp_e)
 
     def sample(
         self
