@@ -114,7 +114,27 @@ class ReplayBuffer(object):
     def sample(
         self
         ):
-        pass
+        experiences = random.sample(self.memory, k = self.batch_size)
 
-    def __len__(self):
-        pass
+        states, actions, rewards, next_states, dones = [], [], [], [], []
+        for state, action, reward, next_state, done in experiences:
+            states.append(state)
+            actions.append(action)
+            rewards.append(reward)
+            next_states.append(next_state)
+            dones.append(done)
+
+        # Convert variables from list to torch tensors.
+        states = torch.from_numpy(np.asarray(states)).float().to(device)
+        actions = torch.from_numpy(np.asarray(actions)).float().to(device)
+        rewards = torch.from_numpy(np.asarray(rewards)).float().to(device)
+        next_states = torch.from_numpy(np.asarray(next_states)).float().to(device)
+        dones = torch.from_numpy(np.asarray(dones).astype(np.uint8)).float().to(device)
+
+        return states, actions, rewards, next_states, dones
+
+    def __len__(
+        self
+        ):
+        """Return the current size of internal memory."""
+        return len(self.memory)
