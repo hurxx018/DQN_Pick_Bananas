@@ -82,7 +82,9 @@ class DQNAgent(object):
 
 
 class ReplayBuffer(object):
-
+    """ ReplayBuffer
+        Fixed-size buffer to store experience tuples.
+    """
     def __init__(
         self,
         action_size,
@@ -90,7 +92,18 @@ class ReplayBuffer(object):
         batch_size, 
         seed
         ):
-
+        """ Initialize a ReplayBuffer object
+            Arguments
+            ---------
+            action_size : int
+                Number of actions for an agent
+            buffer_size : int
+                Maximum size of buffer
+            batch_size : int
+                Number of experiences for each batch
+            seed : int
+                random seed
+        """
         # Store instance variables
         self.action_size = action_size
         self.memory = deque(maxlen = buffer_size)
@@ -108,12 +121,15 @@ class ReplayBuffer(object):
         next_state, 
         done
         ):
+        """ Add a new experience to memory """
         tmp_e = self._experience(state, action, reward, next_state, done)
         self.memory.append(tmp_e)
 
     def sample(
         self
         ):
+        """ Randomly sample a batch of experiences from memory """
+        # randomly chosen experiences
         experiences = random.sample(self.memory, k = self.batch_size)
 
         states, actions, rewards, next_states, dones = [], [], [], [], []
@@ -136,5 +152,5 @@ class ReplayBuffer(object):
     def __len__(
         self
         ):
-        """Return the current size of internal memory."""
+        """ Return the current size of internal memory. """
         return len(self.memory)
