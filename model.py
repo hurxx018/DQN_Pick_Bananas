@@ -1,3 +1,5 @@
+import math
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -23,16 +25,36 @@ class QNetworks(nn.Module):
     """
     def __init__(
         self,
-        state_size,
-        action_size,
-        seed
+        state_size = 37,
+        action_size = 4,
+        seed = 12345
         ):
         super(QNetworks, self).__init__()
 
+        # create instance variables
+        self.state_size = state_size
+        self.action_size = action_size
+        self.seed = seed
 
+        # compute 2**n closest to state_size
+        e2 = int(2**int(math.log2(self.state_size)))
+
+        # create layers
+        self.fc1 = nn.Linear(self.state_size, e2*2)
+        self.fc2 = nn.Linear(e2*2, e2*4)
+        self.fc3 = nn.Linear(e2*4, e2*2)
+        self.fc4 = nn.Linear(e2*2, e2*1)
+        self.fc5 = nn.Linear(e2*1, self.action_size)
 
     def forward(
         self, 
         x
         ):
-        pass
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = F.relu(self.fc3(x))
+        x = F.relu(self.fc4(x))
+        out = F.relu(self.fc5(x))
+
+        return out
+
