@@ -58,3 +58,18 @@ class QNetworks(nn.Module):
 
         return out
 
+
+def weights_init_normal(
+    m
+    ):
+    """ Initialize a linear layer 
+        Arguments
+        ---------
+        m : 
+            a layer of model
+    """
+    if isinstance(m, nn.Linear):
+        n = m.in_features
+        y = 1./math.sqrt(n)
+        m.weight.data.normal_(0., y)
+        m.bias.data.fill_(0)
