@@ -15,7 +15,7 @@ train in train.py
 
 
 ## Architecture
-image
+![figure of architecture](https://github.com/hurxx018/DQN_Pick_Bananas/blob/master/images/architecture_for_agent.png)
 
 
 ## Result
