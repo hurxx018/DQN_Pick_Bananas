@@ -40,10 +40,10 @@ class QNetworks(nn.Module):
         e2 = int(2**int(math.log2(self.state_size)))
 
         # create layers
-        self.fc1 = nn.Linear(self.state_size, e2*2)
-        self.fc2 = nn.Linear(e2*2, e2*4)
-        self.fc3 = nn.Linear(e2*4, e2*2)
-        self.fc4 = nn.Linear(e2*2, e2*1)
+        self.fc1 = nn.Linear(self.state_size, e2*8*8)
+        self.fc2 = nn.Linear(e2*8*8, e2*8*4)
+        self.fc3 = nn.Linear(e2*8*4, e2*4)
+        self.fc4 = nn.Linear(e2*4, e2*1)
         self.fc5 = nn.Linear(e2*1, self.action_size)
 
     def forward(
