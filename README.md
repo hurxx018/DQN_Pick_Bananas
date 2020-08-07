@@ -6,5 +6,6 @@ An agent navigates a field where yellow and blue bananas are located randomly. T
 ## Solution
 The agent utilizes a deep Q-network as value function that consists of hidden layers (see the architecture for the details). 
 
+
 ## Architecture
 image
