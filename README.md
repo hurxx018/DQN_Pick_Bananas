@@ -19,4 +19,4 @@ image
 
 
 ## Result
-![figure of score]("score.png")
+![figure of score]("https://github.com/hurxx018/DQN_Pick_Bananas/blob/master/images/score.png")
