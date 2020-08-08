@@ -20,3 +20,4 @@ This is a trace of mean values of 100 consecutive scores. The agent achieves the
 It would be easy to make a decision of picking the first five pieces of bananas. After doing it, the agent might avoid blue bananas left around itself and move toward picking yellow bananas in the other area. These two statements are not proven yet here. The next question could be "How can we show the process that the agent learns the strategy?". 
 
 ## Future Work
+This work needs to be improved with the implementation of prioritized experience replay and dueling Q-networks.
