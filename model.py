@@ -34,17 +34,15 @@ class QNetworks(nn.Module):
         # create instance variables
         self.state_size = state_size
         self.action_size = action_size
-        self.seed = seed
+        # self.seed = torch.manual_seed(seed)
 
         # compute 2**n closest to state_size
         e2 = int(2**int(math.log2(self.state_size)))
 
         # create layers
-        self.fc1 = nn.Linear(self.state_size, e2*8*8)
-        self.fc2 = nn.Linear(e2*8*8, e2*8*4)
-        self.fc3 = nn.Linear(e2*8*4, e2*4)
-        self.fc4 = nn.Linear(e2*4, e2*1)
-        self.fc5 = nn.Linear(e2*1, self.action_size)
+        self.fc1 = nn.Linear(self.state_size, e2*4)
+        self.fc2 = nn.Linear(e2*4, e2*4)
+        self.fc3 = nn.Linear(e2*4, self.action_size)
 
     def forward(
         self, 
@@ -52,9 +50,7 @@ class QNetworks(nn.Module):
         ):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        x = F.relu(self.fc3(x))
-        x = F.relu(self.fc4(x))
-        out = F.relu(self.fc5(x))
+        out = F.relu(self.fc3(x))
 
         return out
 
