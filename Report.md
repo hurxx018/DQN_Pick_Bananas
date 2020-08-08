@@ -13,7 +13,7 @@ The Network consists of an input layer (black), two hidden layers (blue), and an
 
 
 ## Results
-This is a trace of mean values of 100 consecutive scores. The agent achieves the goal after running ~1450 episodes. The initial stage of learning is steep and the learning phase becomes slow down. 
+This is a trace of mean values of 100 consecutive scores. The agent achieves the goal after running ~900 episodes. The initial stage of learning is steep and the learning phase becomes slow down. 
 
 ![figure of score](https://github.com/hurxx018/DQN_Pick_Bananas/blob/master/images/score.png)
 
